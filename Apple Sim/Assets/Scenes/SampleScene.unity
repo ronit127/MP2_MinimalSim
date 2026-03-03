@@ -5193,8 +5193,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 17173bd791ec6af4f84844108d1ab5c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AppleCalc
-  apples: 5
-  generationRate: 2
+  apples: 20
+  generationRate: 0
   textDisplay: {fileID: 1636572263}
 --- !u!4 &1546513618
 Transform:

@@ -29,23 +29,39 @@ public class AppleTreeStation : MonoBehaviour
             if (!isOwned)
             {
                 isOwned = true;
-                treeVisual.gameObject.SetActive(true); 
+                treeVisual.gameObject.SetActive(true);
+
+                if (treeLevels != null && treeLevels.Length > 0)
+                {
+                    treeVisual.mesh = treeLevels[0];
+                }
+
+                manager.generationRate += productionPowerChange;
+                currProductionPower += productionPowerChange;
+                upgradeCount += 1;
                 price = 20f;
             }
             else
             {
-                treeVisual.mesh = treeLevels[upgradeCount];
-                manager.generationRate += productionPowerChange;
-                currProductionPower += productionPowerChange;
-                upgradeCount += 1;
-                price *= 1.5f;
+                if (upgradeCount < treeLevels.Length)
+                {
+                    treeVisual.mesh = treeLevels[upgradeCount];
+                    manager.generationRate += productionPowerChange;
+                    currProductionPower += productionPowerChange;
+                    upgradeCount += 1;
+                    price *= 1.5f;
+                }
             }
-            statusText.text = isOwned ? "Upgrade: " + (int)price + " apples" : "Buy: " + (int)price + " apples";
+
             currentProductionText.text = isOwned ? (int) currProductionPower + " apples per second" : "";
 
-            if (upgradeCount == treeLevels.Length - 1)
+            if (upgradeCount >= treeLevels.Length)
             {
                 statusText.text = "Max Level!";
+            }
+            else
+            {
+                statusText.text = isOwned ? "Upgrade: " + (int)price + " apples" : "Buy: " + (int)price + " apples";
             }
         }
     }

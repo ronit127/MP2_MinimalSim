@@ -1,11 +1,16 @@
 using UnityEngine;
 using TMPro;
+
 public class AppleCalc : MonoBehaviour
 {
     public float apples;
     public float generationRate;
 
+    public float oranges;
+    public float orangeGenerationRate;
+
     public TextMeshProUGUI textDisplay;
+    public TextMeshProUGUI orangeTextDisplay;
 
     [Header("Achievement Trophies")]
     public GameObject[] trophies;
@@ -21,10 +26,15 @@ public class AppleCalc : MonoBehaviour
 
     void Update()
     {
+        // Apples
         apples += generationRate * Time.deltaTime;
         textDisplay.text = "Apples: " + Mathf.FloorToInt(apples);
 
-        CheckAchievement(Mathf.FloorToInt(apples));
+        // Oranges
+        oranges += orangeGenerationRate * Time.deltaTime;
+        orangeTextDisplay.text = "Oranges: " + Mathf.FloorToInt(oranges);
+
+        CheckAchievement(Mathf.FloorToInt(apples + oranges));
     }
 
     void CheckAchievement(int fruit)

@@ -11,45 +11,50 @@ public class PowerUpStationScript : MonoBehaviour
     public float productionMultiplier = 1.2f;
     public int maxPurchases = 5;
     private int purchases = 0;
+    private float cumulativeMultiplier = 1f;
+
+    private AppleTreeStation[] cachedAppleTrees;
+    private OrangeTreeStationScript[] cachedOrangeTrees;
 
     private float lastClickTime = -999f;
     private float clickCooldown = 0.1f;
 
     public void Start()
     {
-        buttonText.text = "Cost " + price;
+        buttonText.text = "Boost: " + (int)price + " apples";
+        productionRateText.text = "Boost x1.0";
+        cachedAppleTrees = FindObjectsOfType<AppleTreeStation>();
+        cachedOrangeTrees = FindObjectsOfType<OrangeTreeStationScript>();
     }
 
     public void OnStationClicked()
     {
         if (Time.time - lastClickTime < clickCooldown) return;
         lastClickTime = Time.time;
-    
+
         if (purchases >= maxPurchases) return;
 
         if (manager.apples >= price)
         {
             manager.apples -= price;
+
             manager.generationRate *= productionMultiplier;
-            productionRateText.text = "Production x " + productionMultiplier;
+            manager.orangeGenerationRate *= productionMultiplier;
+            cumulativeMultiplier *= productionMultiplier;
 
-            AppleTreeStation[] appleTrees = FindObjectsOfType<AppleTreeStation>();
-            foreach (AppleTreeStation appleTree in appleTrees)
-            {
-                appleTree.ApplyPowerUp(productionMultiplier);
-            }
+            foreach (AppleTreeStation t in cachedAppleTrees)
+                t.ApplyPowerUp(productionMultiplier);
 
-            OrangeTreeStationScript[] orangeTrees = FindObjectsOfType<OrangeTreeStationScript>();
-            foreach (OrangeTreeStationScript orangeTree in orangeTrees)
-            {
-                orangeTree.ApplyPowerUp(productionMultiplier);
-            }
+            foreach (OrangeTreeStationScript t in cachedOrangeTrees)
+                t.ApplyPowerUp(productionMultiplier);
 
-            productionMultiplier *= 2f; 
-            price *= 2f;
-            purchases += 1;
+            productionRateText.text = "Boost x" + cumulativeMultiplier.ToString("F2");
 
-            buttonText.text = (purchases >= maxPurchases) ? "Sold Out!" : ("Cost " + price);
+            productionMultiplier += 0.1f;
+            price = Mathf.Round(price * 2f);
+            purchases++;
+
+            buttonText.text = purchases >= maxPurchases ? "Sold Out!" : "Boost: " + (int)price + " apples";
         }
     }
 }

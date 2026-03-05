@@ -24,38 +24,42 @@ public class AppleCalc : MonoBehaviour
 
     void Start()
     {
-        isActive = new bool[trophies.Length];
-        unlockButton.SetActive(false);
+        int trophyCount = trophies != null ? trophies.Length : 0;
+        int thresholdCount = thresholds != null ? thresholds.Length : 0;
+        int arrLen = Mathf.Min(trophyCount, thresholdCount);
+        isActive = new bool[arrLen];
+        if (unlockButton != null)
+            unlockButton.SetActive(false);
     }
 
     void Update()
     {
-        // Apples
         apples += generationRate * Time.deltaTime;
         textDisplay.text = "Apples: " + Mathf.FloorToInt(apples);
 
-        // Oranges
         oranges += orangeGenerationRate * Time.deltaTime;
         orangeTextDisplay.text = "Oranges: " + Mathf.FloorToInt(oranges);
 
-        if (apples >= unlockCost)
-        {
-            unlockButton.SetActive(true);
-        }
+        if (unlockButton != null)
+            unlockButton.SetActive(apples >= unlockCost);
 
         CheckAchievement(Mathf.FloorToInt(apples + oranges));
     }
 
     void CheckAchievement(int fruit)
     {
-        if (achievementLevel >= trophies.Length) return;
-        
+        if (trophies == null || thresholds == null) return;
+        int maxCount = Mathf.Min(trophies.Length, thresholds.Length);
+        if (achievementLevel >= maxCount) return;
+
         if (!isActive[achievementLevel] && fruit >= thresholds[achievementLevel])
         {
             isActive[achievementLevel] = true;
-            trophies[achievementLevel].gameObject.SetActive(true);
-            achievementText.text = "Achievement Unlocked!\n" + thresholds[achievementLevel] + " Fruit Collected";
-            achievementLevel += 1;
+            if (trophies[achievementLevel] != null)
+                trophies[achievementLevel].SetActive(true);
+            if (achievementText != null)
+                achievementText.text = "Achievement Unlocked!\n" + thresholds[achievementLevel] + " Fruit Collected";
+            achievementLevel++;
         }
     }
 }

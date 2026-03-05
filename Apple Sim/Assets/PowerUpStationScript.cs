@@ -39,11 +39,11 @@ public class PowerUpStationScript : MonoBehaviour
                 appleTree.ApplyPowerUp(productionMultiplier);
             }
 
-            // OrangeTreeStation[] orangeTrees = FindObjectsOfType<OrangeTreeStation>();
-            // foreach (OrangeTreeStation orangeTree in orangeTrees)
-            // {
-            //     orangeTree.ApplyPowerUp(productionMultiplier);
-            // }
+            OrangeTreeStationScript[] orangeTrees = FindObjectsOfType<OrangeTreeStationScript>();
+            foreach (OrangeTreeStationScript orangeTree in orangeTrees)
+            {
+                orangeTree.ApplyPowerUp(productionMultiplier);
+            }
 
             productionMultiplier *= 2f; 
             price *= 2f;

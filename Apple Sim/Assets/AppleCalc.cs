@@ -12,6 +12,9 @@ public class AppleCalc : MonoBehaviour
     public TextMeshProUGUI textDisplay;
     public TextMeshProUGUI orangeTextDisplay;
 
+    public GameObject unlockButton;
+    public float unlockCost = 30f;
+
     [Header("Achievement Trophies")]
     public GameObject[] trophies;
     public int[] thresholds;
@@ -22,6 +25,7 @@ public class AppleCalc : MonoBehaviour
     void Start()
     {
         isActive = new bool[trophies.Length];
+        unlockButton.SetActive(false);
     }
 
     void Update()
@@ -33,6 +37,11 @@ public class AppleCalc : MonoBehaviour
         // Oranges
         oranges += orangeGenerationRate * Time.deltaTime;
         orangeTextDisplay.text = "Oranges: " + Mathf.FloorToInt(oranges);
+
+        if (apples >= unlockCost)
+        {
+            unlockButton.SetActive(true);
+        }
 
         CheckAchievement(Mathf.FloorToInt(apples + oranges));
     }

@@ -8,9 +8,12 @@ public class PowerUpStationScript : MonoBehaviour
     public TextMeshProUGUI buttonText;
 
     public float price = 100f;
-    public float productionPowerMultiplier = 2f;
+    public float productionMultiplier = 1.2f;
     public int maxPurchases = 5;
     private int purchases = 0;
+
+    private float lastClickTime = -999f;
+    private float clickCooldown = 0.1f;
 
     public void Start()
     {
@@ -19,22 +22,34 @@ public class PowerUpStationScript : MonoBehaviour
 
     public void OnStationClicked()
     {
+        if (Time.time - lastClickTime < clickCooldown) return;
+        lastClickTime = Time.time;
+    
+        if (purchases >= maxPurchases) return;
+
         if (manager.apples >= price)
         {
-            if (purchases >= maxPurchases)
+            manager.apples -= price;
+            manager.generationRate *= productionMultiplier;
+            productionRateText.text = "Production x " + productionMultiplier;
+
+            AppleTreeStation[] appleTrees = FindObjectsOfType<AppleTreeStation>();
+            foreach (AppleTreeStation appleTree in appleTrees)
             {
-                buttonText.text = "Sold Out!";
-                return;
+                appleTree.ApplyPowerUp(productionMultiplier);
             }
 
-            manager.apples -= price;
-            manager.generationRate *= productionPowerMultiplier;
-            productionRateText.text = "Production x " + productionPowerMultiplier;
-            productionPowerMultiplier *= 2; 
-            price *= 2;
+            // OrangeTreeStation[] orangeTrees = FindObjectsOfType<OrangeTreeStation>();
+            // foreach (OrangeTreeStation orangeTree in orangeTrees)
+            // {
+            //     orangeTree.ApplyPowerUp(productionMultiplier);
+            // }
+
+            productionMultiplier *= 2f; 
+            price *= 2f;
             purchases += 1;
 
-            buttonText.text = "Cost " + price;
+            buttonText.text = (purchases >= maxPurchases) ? "Sold Out!" : ("Cost " + price);
         }
     }
 }

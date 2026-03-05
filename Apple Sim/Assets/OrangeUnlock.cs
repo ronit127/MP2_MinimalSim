@@ -11,17 +11,15 @@ public class OrangeUnlock : MonoBehaviour
     public Renderer gateRenderer;
     public Color unlockedColor = Color.green;
 
-    public float unlockCost = 30f;
-
     private bool unlocked = false;
 
     public void OnUnlockClicked()
     {
         if (unlocked) return;
 
-        if (manager.apples >= unlockCost)
+        if (manager.apples >= manager.unlockCost)
         {
-            manager.apples -= unlockCost;
+            manager.apples -= manager.unlockCost;
 
             tutorialPanel.SetActive(true);  // show tutorial
 

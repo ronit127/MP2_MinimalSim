@@ -173,7 +173,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Unlock Oranges (30 Apples)
+  m_text: Unlock Oranges (300 Apples)
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -777,6 +777,10 @@ PrefabInstance:
     - target: {fileID: 6634909686733865776, guid: 5f11f3be43036cc44a46ea0e729a5346, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6708329928764209745, guid: 5f11f3be43036cc44a46ea0e729a5346, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 8509365774232483931, guid: 5f11f3be43036cc44a46ea0e729a5346, type: 3}
       propertyPath: m_text
@@ -1832,6 +1836,7 @@ MonoBehaviour:
   manager: {fileID: 1546513617}
   statusText: {fileID: 1117740230}
   currentProductionText: {fileID: 31584557}
+  clickerButton: {fileID: 0}
   treeVisual: {fileID: 1604055584}
   treeLevels:
   - {fileID: -5117783629146668117, guid: 8446fe92de3910f48b1eb2745dbd531a, type: 3}
@@ -2433,6 +2438,7 @@ MonoBehaviour:
   manager: {fileID: 1546513617}
   statusText: {fileID: 586308873}
   currentProductionText: {fileID: 2130199887}
+  clickerButton: {fileID: 0}
   treeVisual: {fileID: 464195276}
   treeLevels:
   - {fileID: -5117783629146668117, guid: 8446fe92de3910f48b1eb2745dbd531a, type: 3}
@@ -2794,6 +2800,7 @@ MonoBehaviour:
   manager: {fileID: 1546513617}
   statusText: {fileID: 1127666405}
   currentProductionText: {fileID: 590172285}
+  clickerButton: {fileID: 0}
   treeVisual: {fileID: 574390740}
   treeLevels:
   - {fileID: -5117783629146668117, guid: 8446fe92de3910f48b1eb2745dbd531a, type: 3}
@@ -7424,6 +7431,7 @@ MonoBehaviour:
   manager: {fileID: 1546513617}
   statusText: {fileID: 485449084}
   currentProductionText: {fileID: 755449068}
+  clickerButton: {fileID: 0}
   treeVisual: {fileID: 418101817}
   treeLevels:
   - {fileID: -5117783629146668117, guid: 8446fe92de3910f48b1eb2745dbd531a, type: 3}
@@ -8891,11 +8899,13 @@ MonoBehaviour:
   orangeGenerationRate: 0
   textDisplay: {fileID: 1636572263}
   orangeTextDisplay: {fileID: 2074592743}
+  unlockButton: {fileID: 1636521849}
+  unlockCost: 300
   trophies:
   - {fileID: 1760830619}
   - {fileID: 393676030}
   - {fileID: 1692377867}
-  thresholds: 1e000000320000004b000000
+  thresholds: 1e00000064000000f4010000
   achievementText: {fileID: 1962519369}
 --- !u!4 &1546513618
 Transform:
@@ -9975,8 +9985,8 @@ MonoBehaviour:
   productionRateText: {fileID: 575353962}
   buttonText: {fileID: 1022432307}
   price: 100
-  productionPowerMultiplier: 2
-  maxPurchases: 5
+  productionMultiplier: 2
+  maxPurchases: 3
 --- !u!4 &1690853693
 Transform:
   m_ObjectHideFlags: 0
@@ -11265,6 +11275,7 @@ MonoBehaviour:
   manager: {fileID: 1546513617}
   statusText: {fileID: 1158220476}
   currentProductionText: {fileID: 528608198}
+  clickerButton: {fileID: 0}
   treeVisual: {fileID: 469147512}
   treeLevels:
   - {fileID: -5117783629146668117, guid: 8446fe92de3910f48b1eb2745dbd531a, type: 3}
@@ -11978,7 +11989,6 @@ MonoBehaviour:
   buttonText: {fileID: 48859322}
   gateRenderer: {fileID: 1976304280}
   unlockedColor: {r: 0, g: 1, b: 0, a: 1}
-  unlockCost: 30
 --- !u!4 &1939105744
 Transform:
   m_ObjectHideFlags: 0
@@ -12297,6 +12307,7 @@ MonoBehaviour:
   manager: {fileID: 1546513617}
   statusText: {fileID: 631056936}
   currentProductionText: {fileID: 1605584264}
+  clickerButton: {fileID: 0}
   treeVisual: {fileID: 1441944786}
   treeLevels:
   - {fileID: -5117783629146668117, guid: 8446fe92de3910f48b1eb2745dbd531a, type: 3}

@@ -6,6 +6,7 @@ public class AppleTreeStation : MonoBehaviour
     public AppleCalc manager;
     public TextMeshProUGUI statusText;
     public TextMeshProUGUI currentProductionText;
+    public GameObject clickerButton;
     public MeshFilter treeVisual;
     public Mesh[] treeLevels;
 
@@ -22,6 +23,7 @@ public class AppleTreeStation : MonoBehaviour
     public void Start()
     {
         treeVisual.gameObject.SetActive(false);
+        clickerButton.SetActive(false);
     }
 
     public void OnStationClicked()
@@ -34,6 +36,7 @@ public class AppleTreeStation : MonoBehaviour
             {
                 isOwned = true;
                 treeVisual.gameObject.SetActive(true);
+                clickerButton.SetActive(true);
 
                 if (treeLevels != null && treeLevels.Length > 0)
                 {
@@ -78,5 +81,13 @@ public class AppleTreeStation : MonoBehaviour
         lastClickTime = Time.time;
 
         manager.apples += clickerRate;
+    }
+
+    public void ApplyPowerUp(float multiplier)
+    {
+        if (!isOwned) return;
+
+        currProductionPower *= multiplier;
+        currentProductionText.text = (int)currProductionPower + " apples per second";
     }
 }

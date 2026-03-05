@@ -14,6 +14,10 @@ public class AppleTreeStation : MonoBehaviour
     private float currProductionPower = 1f;
     private bool isOwned = false;
     private int upgradeCount = 0;
+    public int clickerRate = 1;
+
+    private float lastClickTime = -999f;
+    private float clickCooldown = 0.1f;
 
     public void Start()
     {
@@ -64,5 +68,15 @@ public class AppleTreeStation : MonoBehaviour
                 statusText.text = isOwned ? "Upgrade: " + (int)price + " apples" : "Buy: " + (int)price + " apples";
             }
         }
+    }
+    
+    public void OnClickerClicked()
+    {
+        if (!isOwned) return;
+
+        if (Time.time - lastClickTime < clickCooldown) return;
+        lastClickTime = Time.time;
+
+        manager.apples += clickerRate;
     }
 }

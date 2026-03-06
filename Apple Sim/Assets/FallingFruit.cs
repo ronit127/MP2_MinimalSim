@@ -6,6 +6,7 @@ public class FallingFruit : MonoBehaviour
     public float lifetime = 4f;
     public float spinSpeed = 90f;
 
+    private bool hasLanded = false;
     private float elapsed = 0f;
     private Vector3 drift;
     private Rigidbody rb;
@@ -26,19 +27,26 @@ public class FallingFruit : MonoBehaviour
 
     void Update()
     {
+        if (!hasLanded) return;
+
         elapsed += Time.deltaTime;
-        if (rb == null)
-        {
-            transform.position += (Vector3.down * fallSpeed + drift) * Time.deltaTime;
-            transform.Rotate(Random.insideUnitSphere * spinSpeed * Time.deltaTime);
-        }
-        else
-        {
-            // keep velocity stable in case other forces apply
-            rb.linearVelocity = Vector3.down * fallSpeed + drift;
-        }
+        // if (rb == null)
+        // {
+        //     transform.position += (Vector3.down * fallSpeed + drift) * Time.deltaTime;
+        //     transform.Rotate(Random.insideUnitSphere * spinSpeed * Time.deltaTime);
+        // }
+        // else
+        // {
+        //     // keep velocity stable in case other forces apply
+        //     rb.linearVelocity = Vector3.down * fallSpeed + drift;
+        // }
 
         if (elapsed >= lifetime)
             Destroy(gameObject);
+    }
+
+    void OnCollisionEnter(Collision collision)
+    {
+        hasLanded = true;
     }
 }

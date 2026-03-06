@@ -1,5 +1,6 @@
 using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
 
 public class AppleTreeStation : MonoBehaviour
 {
@@ -7,6 +8,7 @@ public class AppleTreeStation : MonoBehaviour
     public TextMeshProUGUI statusText;
     public TextMeshProUGUI currentProductionText;
     public GameObject clickerButton;
+    public Button stationButton;
     public MeshFilter treeVisual;
     public Mesh[] treeLevels;
 
@@ -18,12 +20,12 @@ public class AppleTreeStation : MonoBehaviour
     public int clickerRate = 1;
 
     private float lastClickTime = -999f;
-    private float clickCooldown = 0.1f;
+    private float clickCooldown = 0.05f;
 
     public GameObject fruitPrefab;
     public Transform fruitSpawnPoint;
     private float fruitSpawnTimer = 0f;
-    private const float MinSpawnInterval = 0.05f;
+    private const float MinSpawnInterval = 0.5f;
 
     public void Start()
     {
@@ -31,14 +33,16 @@ public class AppleTreeStation : MonoBehaviour
         clickerButton.SetActive(false);
         statusText.text = "Buy: " + (int)price + " apples";
         currentProductionText.text = "";
+        CheckButtonStatus();
     }
 
     void Update()
     {
+        CheckButtonStatus();
         if (!isOwned || currProductionPower <= 0f || fruitPrefab == null) return;
 
         fruitSpawnTimer += Time.deltaTime;
-        float spawnInterval = Mathf.Max(MinSpawnInterval, 1f / currProductionPower);
+        float spawnInterval = Mathf.Max(MinSpawnInterval, 3f / currProductionPower);
 
         while (fruitSpawnTimer >= spawnInterval)
         {
@@ -56,6 +60,9 @@ public class AppleTreeStation : MonoBehaviour
 
     public void OnStationClicked()
     {
+        if (Time.time - lastClickTime < clickCooldown) return;
+        lastClickTime = Time.time;
+
         if (manager.apples >= price && upgradeCount < treeLevels.Length)
         {
             manager.apples -= price;
@@ -93,6 +100,8 @@ public class AppleTreeStation : MonoBehaviour
             else
                 statusText.text = "Upgrade: " + (int)price + " apples";
         }
+
+        CheckButtonStatus();
     }
 
     public void OnClickerClicked()
@@ -108,5 +117,13 @@ public class AppleTreeStation : MonoBehaviour
         if (!isOwned) return;
         currProductionPower *= multiplier;
         currentProductionText.text = currProductionPower.ToString("F1") + " apples/s";
+    }
+
+    void CheckButtonStatus()
+    {
+        if (stationButton != null)
+        {
+            stationButton.interactable = manager.apples >= price && upgradeCount < treeLevels.Length;   
+        }
     }
 }

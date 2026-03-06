@@ -1,11 +1,13 @@
 using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
 
 public class PowerUpStationScript : MonoBehaviour
 {
     public AppleCalc manager;
     public TextMeshProUGUI productionRateText;
     public TextMeshProUGUI buttonText;
+    public Button button;
 
     public float price = 100f;
     public float productionMultiplier = 1.2f;
@@ -23,8 +25,15 @@ public class PowerUpStationScript : MonoBehaviour
     {
         buttonText.text = "Boost: " + (int)price + " apples";
         productionRateText.text = "Boost x1.0";
-        cachedAppleTrees = FindObjectsOfType<AppleTreeStation>();
-        cachedOrangeTrees = FindObjectsOfType<OrangeTreeStationScript>();
+        cachedAppleTrees = FindObjectsByType<AppleTreeStation>(FindObjectsSortMode.None);
+        cachedOrangeTrees = FindObjectsByType<OrangeTreeStationScript>(FindObjectsSortMode.None);
+
+        CheckButtonStatus();
+    }
+
+    public void Update()
+    {
+        CheckButtonStatus();
     }
 
     public void OnStationClicked()
@@ -55,6 +64,16 @@ public class PowerUpStationScript : MonoBehaviour
             purchases++;
 
             buttonText.text = purchases >= maxPurchases ? "Sold Out!" : "Boost: " + (int)price + " apples";
+        }
+
+        CheckButtonStatus();
+    }
+    
+    void CheckButtonStatus()
+    {
+        if (button != null)
+        {
+            button.interactable = purchases < maxPurchases && manager.apples >= price;   
         }
     }
 }

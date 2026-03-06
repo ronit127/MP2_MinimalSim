@@ -20,8 +20,10 @@ public class OrangeUnlock : MonoBehaviour
         if (manager.apples >= manager.unlockCost)
         {
             manager.apples -= manager.unlockCost;
+            manager.unlockClicked = true;
 
             tutorialPanel.SetActive(true);  // show tutorial
+            Invoke(nameof(ClearText), 45f);
 
             unlocked = true;
 
@@ -31,5 +33,10 @@ public class OrangeUnlock : MonoBehaviour
             if (buttonText != null)
                 buttonText.text = "Unlocked";
         }
+    }
+
+    void ClearText()
+    {
+        tutorialPanel.SetActive(false);
     }
 }

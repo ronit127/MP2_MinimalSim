@@ -64,7 +64,6 @@ Transform:
   - {fileID: 8752992984035216381}
   - {fileID: 9044138301218784612}
   - {fileID: 4682071426687665214}
-  - {fileID: 8753678849083358636}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &7260265360025132272
@@ -83,6 +82,7 @@ MonoBehaviour:
   statusText: {fileID: 4192980271906343247}
   currentProductionText: {fileID: 3898680557376819079}
   clickerButton: {fileID: 7041622703462785292}
+  stationButton: {fileID: 4342940442401024701}
   treeVisual: {fileID: 7108914953536052300}
   treeLevels:
   - {fileID: -5117783629146668117, guid: 8446fe92de3910f48b1eb2745dbd531a, type: 3}
@@ -91,7 +91,7 @@ MonoBehaviour:
   price: 10
   productionPowerChange: 1
   clickerRate: 1
-  fruitPrefab: {fileID: 8228217412919944982}
+  fruitPrefab: {fileID: 5972721933132250877, guid: b9ee41422ffc64491b294f019e44fe0e, type: 3}
   fruitSpawnPoint: {fileID: 4682071426687665214}
 --- !u!1 &2772484628082982029
 GameObject:
@@ -989,70 +989,3 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 7513782459998787165, guid: a55fbf8471203d74aadb7950979d45fd, type: 3}
---- !u!1001 &6728875221845517043
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 7622656760428464644}
-    m_Modifications:
-    - target: {fileID: 2601555374044684127, guid: 6f34c498a65021746bd2eb20abca8232, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -13.55971
-      objectReference: {fileID: 0}
-    - target: {fileID: 2601555374044684127, guid: 6f34c498a65021746bd2eb20abca8232, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -0.645
-      objectReference: {fileID: 0}
-    - target: {fileID: 2601555374044684127, guid: 6f34c498a65021746bd2eb20abca8232, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 13.61943
-      objectReference: {fileID: 0}
-    - target: {fileID: 2601555374044684127, guid: 6f34c498a65021746bd2eb20abca8232, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2601555374044684127, guid: 6f34c498a65021746bd2eb20abca8232, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2601555374044684127, guid: 6f34c498a65021746bd2eb20abca8232, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2601555374044684127, guid: 6f34c498a65021746bd2eb20abca8232, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2601555374044684127, guid: 6f34c498a65021746bd2eb20abca8232, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2601555374044684127, guid: 6f34c498a65021746bd2eb20abca8232, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2601555374044684127, guid: 6f34c498a65021746bd2eb20abca8232, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3409581677897401829, guid: 6f34c498a65021746bd2eb20abca8232, type: 3}
-      propertyPath: m_Name
-      value: food_Tangerine
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 6f34c498a65021746bd2eb20abca8232, type: 3}
---- !u!1 &8228217412919944982 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3409581677897401829, guid: 6f34c498a65021746bd2eb20abca8232, type: 3}
-  m_PrefabInstance: {fileID: 6728875221845517043}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &8753678849083358636 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 2601555374044684127, guid: 6f34c498a65021746bd2eb20abca8232, type: 3}
-  m_PrefabInstance: {fileID: 6728875221845517043}
-  m_PrefabAsset: {fileID: 0}

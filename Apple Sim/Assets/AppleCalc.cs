@@ -14,6 +14,7 @@ public class AppleCalc : MonoBehaviour
 
     public GameObject unlockButton;
     public float unlockCost = 30f;
+    public bool unlockClicked = false;
 
     [Header("Achievement Trophies")]
     public GameObject[] trophies;
@@ -21,13 +22,14 @@ public class AppleCalc : MonoBehaviour
     private int achievementLevel = 0;
     bool[] isActive;
     public TextMeshProUGUI achievementText;
+    private int maxCount;
 
     void Start()
     {
         int trophyCount = trophies != null ? trophies.Length : 0;
         int thresholdCount = thresholds != null ? thresholds.Length : 0;
-        int arrLen = Mathf.Min(trophyCount, thresholdCount);
-        isActive = new bool[arrLen];
+        maxCount = Mathf.Min(trophyCount, thresholdCount);
+        isActive = new bool[maxCount];
         if (unlockButton != null)
             unlockButton.SetActive(false);
     }
@@ -41,25 +43,38 @@ public class AppleCalc : MonoBehaviour
         orangeTextDisplay.text = "Oranges: " + Mathf.FloorToInt(oranges);
 
         if (unlockButton != null)
-            unlockButton.SetActive(apples >= unlockCost);
+            unlockButton.SetActive(unlockClicked || apples >= unlockCost);
 
-        CheckAchievement(Mathf.FloorToInt(apples + oranges));
+        CheckAchievement(Mathf.FloorToInt(unlockClicked ? apples + oranges : apples));
     }
 
     void CheckAchievement(int fruit)
     {
         if (trophies == null || thresholds == null) return;
-        int maxCount = Mathf.Min(trophies.Length, thresholds.Length);
+
         if (achievementLevel >= maxCount) return;
 
+        if (thresholds[achievementLevel] < 0) return;
+        
         if (!isActive[achievementLevel] && fruit >= thresholds[achievementLevel])
         {
             isActive[achievementLevel] = true;
             if (trophies[achievementLevel] != null)
                 trophies[achievementLevel].SetActive(true);
             if (achievementText != null)
+            {
                 achievementText.text = "Achievement Unlocked!\n" + thresholds[achievementLevel] + " Fruit Collected";
+                CancelInvoke(nameof(ClearText));
+                Invoke(nameof(ClearText), 30f);
+            }
+                
             achievementLevel++;
         }
+    }
+
+    void ClearText()
+    {
+        if (achievementText != null)
+            achievementText.text = "";
     }
 }

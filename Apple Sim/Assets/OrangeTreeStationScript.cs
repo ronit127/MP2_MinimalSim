@@ -1,5 +1,6 @@
 using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
 
 public class OrangeTreeStationScript : MonoBehaviour
 {
@@ -7,6 +8,7 @@ public class OrangeTreeStationScript : MonoBehaviour
     public TextMeshProUGUI statusText;
     public TextMeshProUGUI currentProductionText;
     public GameObject clickerButton;
+    public Button stationButton;
     public MeshFilter treeVisual;
     public Mesh[] treeLevels;
 
@@ -18,7 +20,7 @@ public class OrangeTreeStationScript : MonoBehaviour
     public int clickerRate = 1;
 
     private float lastClickTime = -999f;
-    private float clickCooldown = 0.1f;
+    private float clickCooldown = 0.05f;
 
     public GameObject fruitPrefab;
     public Transform fruitSpawnPoint;
@@ -31,14 +33,16 @@ public class OrangeTreeStationScript : MonoBehaviour
         clickerButton.SetActive(false);
         statusText.text = "Buy: " + (int)price + " oranges";
         currentProductionText.text = "";
+        CheckButtonStatus();
     }
 
     void Update()
     {
+        CheckButtonStatus();
         if (!isOwned || currProductionPower <= 0f || fruitPrefab == null) return;
 
         fruitSpawnTimer += Time.deltaTime;
-        float spawnInterval = Mathf.Max(MinSpawnInterval, 1f / currProductionPower);
+        float spawnInterval = Mathf.Max(MinSpawnInterval, 3f / currProductionPower);
 
         while (fruitSpawnTimer >= spawnInterval)
         {
@@ -55,7 +59,10 @@ public class OrangeTreeStationScript : MonoBehaviour
     }
 
     public void OnStationClicked()
-    {
+    {   
+        if (Time.time - lastClickTime < clickCooldown) return;
+        lastClickTime = Time.time;
+        
         if (manager.oranges >= price && upgradeCount < treeLevels.Length)
         {
             manager.oranges -= price;
@@ -93,6 +100,8 @@ public class OrangeTreeStationScript : MonoBehaviour
             else
                 statusText.text = "Upgrade: " + (int)price + " oranges";
         }
+
+        CheckButtonStatus();
     }
 
     public void OnClickerClicked()
@@ -108,5 +117,13 @@ public class OrangeTreeStationScript : MonoBehaviour
         if (!isOwned) return;
         currProductionPower *= multiplier;
         currentProductionText.text = currProductionPower.ToString("F1") + " oranges/s";
+    }
+
+    void CheckButtonStatus()
+    {
+        if (stationButton != null)
+        {
+            stationButton.interactable = manager.oranges >= price && upgradeCount < treeLevels.Length;   
+        }
     }
 }

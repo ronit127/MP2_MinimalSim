@@ -5864,7 +5864,7 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b13e8935972ad4d498de9bbddd312f70, type: 3}
---- !u!1001 &1068122860
+--- !u!1001 &1065559352
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -5876,13 +5876,9 @@ PrefabInstance:
       propertyPath: m_Name
       value: XR Interaction Simulator
       objectReference: {fileID: 0}
-    - target: {fileID: 8135023674665499069, guid: 58d0a4ac86f2348deb02f3880c71378e, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 8518324294302271954, guid: 58d0a4ac86f2348deb02f3880c71378e, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 10.69736
+      value: 16.14829
       objectReference: {fileID: 0}
     - target: {fileID: 8518324294302271954, guid: 58d0a4ac86f2348deb02f3880c71378e, type: 3}
       propertyPath: m_LocalPosition.y
@@ -5890,7 +5886,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8518324294302271954, guid: 58d0a4ac86f2348deb02f3880c71378e, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 24.09468
+      value: 26.71931
       objectReference: {fileID: 0}
     - target: {fileID: 8518324294302271954, guid: 58d0a4ac86f2348deb02f3880c71378e, type: 3}
       propertyPath: m_LocalRotation.w
@@ -13056,63 +13052,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5f11f3be43036cc44a46ea0e729a5346, type: 3}
---- !u!1001 &8031466231663432672
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 8175851765034360234, guid: 0e5d0fa8329bc473eb570b954b032557, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -0.85924494
-      objectReference: {fileID: 0}
-    - target: {fileID: 8175851765034360234, guid: 0e5d0fa8329bc473eb570b954b032557, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 2.771
-      objectReference: {fileID: 0}
-    - target: {fileID: 8175851765034360234, guid: 0e5d0fa8329bc473eb570b954b032557, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 5.851
-      objectReference: {fileID: 0}
-    - target: {fileID: 8175851765034360234, guid: 0e5d0fa8329bc473eb570b954b032557, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8175851765034360234, guid: 0e5d0fa8329bc473eb570b954b032557, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8175851765034360234, guid: 0e5d0fa8329bc473eb570b954b032557, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8175851765034360234, guid: 0e5d0fa8329bc473eb570b954b032557, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8175851765034360234, guid: 0e5d0fa8329bc473eb570b954b032557, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8175851765034360234, guid: 0e5d0fa8329bc473eb570b954b032557, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8175851765034360234, guid: 0e5d0fa8329bc473eb570b954b032557, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8808378347830626064, guid: 0e5d0fa8329bc473eb570b954b032557, type: 3}
-      propertyPath: m_Name
-      value: FallingApple
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 0e5d0fa8329bc473eb570b954b032557, type: 3}
 --- !u!1001 &8667189070492795275
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -13178,7 +13117,7 @@ PrefabInstance:
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
-  - {fileID: 1068122860}
+  - {fileID: 1065559352}
   - {fileID: 410087041}
   - {fileID: 832575519}
   - {fileID: 1845938758}
@@ -13202,7 +13141,6 @@ SceneRoots:
   - {fileID: 1964602097}
   - {fileID: 476427105}
   - {fileID: 845719444}
-  - {fileID: 8031466231663432672}
   - {fileID: 7023492273621809230}
   - {fileID: 1069231586}
   - {fileID: 1812348974}

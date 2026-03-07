@@ -19,6 +19,9 @@ public class AppleTreeStation : MonoBehaviour
     private int upgradeCount = 0;
     public int clickerRate = 1;
 
+    private static int globalAppleTreeCount = 0;
+    private float FirstBuyPrice() => Mathf.Round(price * Mathf.Pow(1.5f, globalAppleTreeCount));
+
     private float lastClickTime = -999f;
     private float clickCooldown = 0.05f;
 
@@ -31,7 +34,7 @@ public class AppleTreeStation : MonoBehaviour
     {
         treeVisual.gameObject.SetActive(false);
         clickerButton.SetActive(false);
-        statusText.text = "Buy: " + (int)price + " apples";
+        statusText.text = "Buy: " + (int)FirstBuyPrice() + " apples";
         currentProductionText.text = "";
         CheckButtonStatus();
     }
@@ -63,13 +66,15 @@ public class AppleTreeStation : MonoBehaviour
         if (Time.time - lastClickTime < clickCooldown) return;
         lastClickTime = Time.time;
 
-        if (manager.apples >= price && upgradeCount < treeLevels.Length)
+        float cost = isOwned ? price : FirstBuyPrice();
+        if (manager.apples >= cost && upgradeCount < treeLevels.Length)
         {
-            manager.apples -= price;
+            manager.apples -= cost;
 
             if (!isOwned)
             {
                 isOwned = true;
+                globalAppleTreeCount++;
                 treeVisual.gameObject.SetActive(true);
                 clickerButton.SetActive(true);
 
@@ -79,7 +84,7 @@ public class AppleTreeStation : MonoBehaviour
                 manager.generationRate += productionPowerChange;
                 currProductionPower += productionPowerChange;
                 upgradeCount++;
-                price = Mathf.Round(price * 2f);
+                price = Mathf.Round(cost * 2f);
             }
             else
             {
@@ -123,7 +128,10 @@ public class AppleTreeStation : MonoBehaviour
     {
         if (stationButton != null)
         {
-            stationButton.interactable = manager.apples >= price && upgradeCount < treeLevels.Length;   
+            float cost = isOwned ? price : FirstBuyPrice();
+            stationButton.interactable = manager.apples >= cost && upgradeCount < treeLevels.Length;
+            if (!isOwned && upgradeCount < treeLevels.Length)
+                statusText.text = "Buy: " + (int)cost + " apples";
         }
     }
 }

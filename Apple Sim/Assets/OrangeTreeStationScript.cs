@@ -19,6 +19,9 @@ public class OrangeTreeStationScript : MonoBehaviour
     private int upgradeCount = 0;
     public int clickerRate = 1;
 
+    private static int globalOrangeTreeCount = 0;
+    private float FirstBuyPrice() => Mathf.Round(price * Mathf.Pow(1.5f, globalOrangeTreeCount));
+
     private float lastClickTime = -999f;
     private float clickCooldown = 0.05f;
 
@@ -31,7 +34,7 @@ public class OrangeTreeStationScript : MonoBehaviour
     {
         treeVisual.gameObject.SetActive(false);
         clickerButton.SetActive(false);
-        statusText.text = "Buy: " + (int)price + " oranges";
+        statusText.text = "Buy: " + (int)FirstBuyPrice() + " oranges";
         currentProductionText.text = "";
         CheckButtonStatus();
     }
@@ -63,13 +66,15 @@ public class OrangeTreeStationScript : MonoBehaviour
         if (Time.time - lastClickTime < clickCooldown) return;
         lastClickTime = Time.time;
         
-        if (manager.oranges >= price && upgradeCount < treeLevels.Length)
+        float cost = isOwned ? price : FirstBuyPrice();
+        if (manager.oranges >= cost && upgradeCount < treeLevels.Length)
         {
-            manager.oranges -= price;
+            manager.oranges -= cost;
 
             if (!isOwned)
             {
                 isOwned = true;
+                globalOrangeTreeCount++;
                 treeVisual.gameObject.SetActive(true);
                 clickerButton.SetActive(true);
 
@@ -79,7 +84,7 @@ public class OrangeTreeStationScript : MonoBehaviour
                 manager.orangeGenerationRate += productionPowerChange;
                 currProductionPower += productionPowerChange;
                 upgradeCount++;
-                price = Mathf.Round(price * 2f);
+                price = Mathf.Round(cost * 2f);
             }
             else
             {
@@ -123,7 +128,10 @@ public class OrangeTreeStationScript : MonoBehaviour
     {
         if (stationButton != null)
         {
-            stationButton.interactable = manager.oranges >= price && upgradeCount < treeLevels.Length;   
+            float cost = isOwned ? price : FirstBuyPrice();
+            stationButton.interactable = manager.oranges >= cost && upgradeCount < treeLevels.Length;
+            if (!isOwned && upgradeCount < treeLevels.Length)
+                statusText.text = "Buy: " + (int)cost + " oranges";
         }
     }
 }

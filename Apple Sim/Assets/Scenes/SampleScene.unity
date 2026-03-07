@@ -5194,11 +5194,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2904993913514844716, guid: 507c282e8f7c39c4a8b8f94e70c67a1b, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.83
+      value: -0.82
       objectReference: {fileID: 0}
     - target: {fileID: 2904993913514844716, guid: 507c282e8f7c39c4a8b8f94e70c67a1b, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.41
+      value: 3.19
       objectReference: {fileID: 0}
     - target: {fileID: 2904993913514844716, guid: 507c282e8f7c39c4a8b8f94e70c67a1b, type: 3}
       propertyPath: m_LocalPosition.z
@@ -5875,6 +5875,10 @@ PrefabInstance:
     - target: {fileID: 8135023674665499069, guid: 58d0a4ac86f2348deb02f3880c71378e, type: 3}
       propertyPath: m_Name
       value: XR Interaction Simulator
+      objectReference: {fileID: 0}
+    - target: {fileID: 8135023674665499069, guid: 58d0a4ac86f2348deb02f3880c71378e, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8518324294302271954, guid: 58d0a4ac86f2348deb02f3880c71378e, type: 3}
       propertyPath: m_LocalPosition.x
@@ -8844,15 +8848,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4674064153482052005, guid: 0e80a0cd28764524ab23b2965cab0398, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 5.54
+      value: 2.08
       objectReference: {fileID: 0}
     - target: {fileID: 4674064153482052005, guid: 0e80a0cd28764524ab23b2965cab0398, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.6436822
+      value: 2.383
       objectReference: {fileID: 0}
     - target: {fileID: 4674064153482052005, guid: 0e80a0cd28764524ab23b2965cab0398, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 29.771706
+      value: 30.537
       objectReference: {fileID: 0}
     - target: {fileID: 4674064153482052005, guid: 0e80a0cd28764524ab23b2965cab0398, type: 3}
       propertyPath: m_LocalRotation.w
@@ -9456,6 +9460,7 @@ MonoBehaviour:
   manager: {fileID: 1546513617}
   productionRateText: {fileID: 575353962}
   buttonText: {fileID: 1022432307}
+  button: {fileID: 0}
   price: 100
   productionMultiplier: 2
   maxPurchases: 3
@@ -10107,6 +10112,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1778777756}
+  - component: {fileID: 1778777757}
   m_Layer: 0
   m_Name: Gate
   m_TagString: Untagged
@@ -10130,6 +10136,19 @@ Transform:
   - {fileID: 1976304278}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1778777757
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1778777755}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6a95a371d3b7c334cbf996ad780602ad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GateContact
+  orangeUnlock: {fileID: 1939105743}
 --- !u!1001 &1787255106
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -11493,6 +11512,7 @@ MonoBehaviour:
   buttonText: {fileID: 48859322}
   gateRenderer: {fileID: 1976304280}
   unlockedColor: {r: 0, g: 1, b: 0, a: 1}
+  unlocked: 0
 --- !u!4 &1939105744
 Transform:
   m_ObjectHideFlags: 0
@@ -11825,6 +11845,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6264394315323814641, guid: c754dcd1fe6a015409569af86c7c1863, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6496949655311063091, guid: c754dcd1fe6a015409569af86c7c1863, type: 3}
       propertyPath: m_Name
       value: Env_WoodFence_01 (17)
@@ -11934,7 +11958,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3

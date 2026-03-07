@@ -11,7 +11,7 @@ public class OrangeUnlock : MonoBehaviour
     public Renderer gateRenderer;
     public Color unlockedColor = Color.green;
 
-    private bool unlocked = false;
+    public bool unlocked = false;
 
     public void OnUnlockClicked()
     {
@@ -33,6 +33,18 @@ public class OrangeUnlock : MonoBehaviour
             if (buttonText != null)
                 buttonText.text = "Unlocked";
         }
+    }
+
+    void OnTriggerEnter(Collider other)
+    {
+        if (unlocked && gateRenderer != null)
+            gateRenderer.gameObject.SetActive(false);
+    }
+
+    void OnCollisionEnter(Collision collision)
+    {
+        if (unlocked && gateRenderer != null)
+            gateRenderer.gameObject.SetActive(false);
     }
 
     void ClearText()
